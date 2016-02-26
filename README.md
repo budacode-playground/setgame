@@ -24,6 +24,7 @@ A set consists of 3 cards. These 3 cards has to have the same (or 3 different) p
 
 ### Objects
   - Card object (has 4 properties in different categories)
+
  ```json
   {
    number: {1,2,3},
@@ -32,5 +33,6 @@ A set consists of 3 cards. These 3 cards has to have the same (or 3 different) p
    color: {red, green, blue},
  }
  ```
+
   - Deck object (81 cards)
   - Board object (Can draw cards from deck, etc.)
