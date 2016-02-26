@@ -21,3 +21,16 @@ A set consists of 3 cards. These 3 cards has to have the same (or 3 different) p
  - card 1: [2, red, dashed, circle]
  - card 2: [2, green, dashed, square]
  - card 3: [2, blue, dashed, rectangle]
+
+### Objects
+  - Card object (has 4 properties in different categories)
+ ```json
+  {
+   number: {1,2,3},
+   saturation: {outlined, dashed, saturated},
+   shape: {circle, square, rectangle},
+   color: {red, green, blue},
+ }
+ ```
+  - Deck object (81 cards)
+  - Board object (Can draw cards from deck, etc.)
