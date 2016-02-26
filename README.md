@@ -25,7 +25,7 @@ A set consists of 3 cards. These 3 cards has to have the same (or 3 different) p
 ### Objects
   - Card object (has 4 properties in different categories)
 
- ```json
+ ```javascript
   {
    number: {1,2,3},
    saturation: {outlined, dashed, saturated},
