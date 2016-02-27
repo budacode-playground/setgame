@@ -1,0 +1,10 @@
+h3 Angular2 Seed
+div
+  a([routerLink]="['/Home']") Home
+  span= ' | '
+  a([routerLink]="['/About']") About
+  span= ' | '
+  a([routerLink]="['/RepoBrowser/RepoList', {org: 'angular'}]") Github Repos
+
+div
+  router-outlet
