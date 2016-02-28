@@ -40,7 +40,9 @@ module.exports = {
     loaders: [
       { test: /\.ts$/, loader: 'ts-loader' },
       { test: /\.css$/, loader: 'style!css' },
-      { test: /\.scss$/, loader: 'style!css!autoprefixer!sass' },
+      { test: /\.scss$/, loader: 'style-loader!css-loader!sass-loader' },
+      //{ test: /\.scss$/, loader: 'file-loader!raw-loader!sass-loader' },
+      //{ test: /\.scss$/, loader: 'raw-loader!sass-loader' },
       { test: /\.jade$/, loader: 'jade-loader' }
     ],
     noParse: [path.join(__dirname, 'node_modules', 'angular2', 'bundles')]
