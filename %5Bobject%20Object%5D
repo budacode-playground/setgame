@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset=UTF-8>
+    <title>Angular2 Seed</title>
+    <base href="/setgame/">
+  </head>
+  <body>
+    <board>loading...</board>
+    <script src="vendor.bundle.js"></script>
+    <script src="bundle.js"></script>
+  </body>
+</html>
