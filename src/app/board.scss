@@ -1,0 +1,26 @@
+.m-board {
+  padding: 50px;
+
+  &__main {
+    display: flex;
+  }
+
+  &__deckContainer {
+    margin-right: 50px;
+  }
+
+  &__cardContainer {
+    width: 430px;
+    display: flex;
+    flex-wrap: wrap;
+
+    card {
+      margin: 0 5px 5px 0;
+    }
+  }
+
+  &__setCounter {
+    margin-top: 10px;
+  }
+
+}

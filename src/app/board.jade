@@ -1,0 +1,9 @@
+.m-board
+  h1 Welcome to the board
+
+  .m-board__main
+    .m-board__deckContainer
+      deck([deck]='deck', (clickEvent)='clickOnDeck($event)')
+      .m-board__setCounter Collected sets: {{ sets.length }}
+    .m-board__cardContainer
+      card(*ngFor='#card of visibleCards.cards', [card]='card', (clickEvent)='clickOnCard($event)')
