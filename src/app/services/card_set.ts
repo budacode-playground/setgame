@@ -27,6 +27,15 @@ export class CardSet {
     this.shuffle();
   }
 
+  switchActivityById(cardId) {
+    let targetCard = this.findById(cardId);
+    targetCard.active = !targetCard.active;
+  }
+
+  findById(cardId) {
+    return _.find(this.cards, { id: cardId });
+  }
+
   draw() {
     return this.cards.shift();
   }
@@ -40,7 +49,7 @@ export class CardSet {
   }
 
   remove(card: Card) {
-    // TODO
+    _.remove(this.cards, { id: card.id });
   }
 
   setEmpty() {

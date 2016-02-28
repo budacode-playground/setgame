@@ -1,3 +1,4 @@
+const propertyNames = ['number', 'saturation', 'shape', 'color'];
 const number = [1, 2, 3];
 const saturation = ['striped', 'empty', 'full'];
 const color = ['red', 'green', 'blue'];
@@ -17,6 +18,7 @@ const CardProps = {
   saturation,
   color,
   shape,
+  propertyNames,
   getRandomProps,
 };
 

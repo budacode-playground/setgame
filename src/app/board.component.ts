@@ -2,6 +2,7 @@ import {Component} from 'angular2/core';
 import {NgFor} from 'angular2/common';
 import {DeckComponent} from './components/deck/deck.component.ts';
 import {CardComponent} from './components/card/card.component.ts';
+import {CardProps} from './config/card_props.ts';
 import {Card} from './services/card.ts';
 import {CardSet} from './services/card_set.ts';
 
@@ -27,23 +28,32 @@ export class BoardComponent {
     while (this.visibleCards.count() < 9) {
       this.visibleCards.add(this.deck.draw());
     }
-    console.log(this.visibleCards.cards);
   }
 
   checkForSet() {
     // Number, color, saturation, shape check
-    // TODO: check for set
-    // TODO: working remove functionality
-    // TODO: handling inactivity of the cards from the board
     // TODO: Measuring time
     // TODO: provide an API for AI players
 
-    this.sets.push(this.chosenCards);
+    const that = this;
+    let isSet = CardProps.propertyNames.reduce((prevVal, curVal, curIndex) => {
+      let propertyValues = _.flatMap(that.chosenCards.cards, `props.${curVal}`);
+      let uniqueValues = _.uniq(propertyValues);
+      return prevVal && uniqueValues.length !== 2;
+    }, true);
 
-    // Remove the visible cards
-    while (this.chosenCards.count() > 0) {
-      this.visibleCards.remove(this.chosenCards.draw());
+    if (isSet) {
+      this.sets.push(this.chosenCards);
+
+      // Remove the visible cards and draw from deck
+      while (this.chosenCards.count() > 0) {
+        this.visibleCards.remove(this.chosenCards.draw());
+        this.visibleCards.add(this.deck.draw());
+      }
+    } else {
+      alert('Sorry, this is not a set');
     }
+
   }
 
   clickOnDeck($event: any) {
@@ -52,22 +62,29 @@ export class BoardComponent {
 
   clickOnCard($event: any) {
 
-    if (this.chosenCards.count() >= 3) {
+    if ($event.card.active) {
 
-      alert('You can\'t select more than 3 cards');
+      // If we already have 3 chosenCards...
+      if (this.chosenCards.count() === 3) {
 
-    } else {
+        alert('You can\'t select more than 3 cards');
+        this.visibleCards.switchActivityById($event.card.id);
 
-      if ($event.active) {
+      } else {
+
+        // If active, add it to the chosenCards
         this.chosenCards.add($event.card);
+        // If we have 3 chosenCards, let's check
         if (this.chosenCards.count() === 3) {
           this.checkForSet();
         }
-      } else {
-        this.chosenCards.remove($event.card);
+
       }
 
+    } else {
+      this.chosenCards.remove($event.card);
     }
+
 
   }
 

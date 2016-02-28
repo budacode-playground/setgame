@@ -14,13 +14,12 @@ import {Card} from '../../services/card';
 export class CardComponent {
   @Input() card: Card;
   @Output() clickEvent: EventEmitter<any> = new EventEmitter();
-  active: boolean = false;
 
   constructor() {}
 
   onClick() {
-    this.active = !this.active;
-    this.clickEvent.emit({ card: this.card, active: this.active });
+    this.card.active = !this.card.active;
+    this.clickEvent.emit({ card: this.card });
   }
 
   getNumber() {
