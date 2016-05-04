@@ -1,5 +1,5 @@
-import {Component} from 'angular2/core';
-import {NgFor} from 'angular2/common';
+import {Component} from '@angular/core';
+import {NgFor} from '@angular/common';
 import {DeckComponent} from './components/deck/deck.component.ts';
 import {CardComponent} from './components/card/card.component.ts';
 import {CardProps} from './config/card_props.ts';

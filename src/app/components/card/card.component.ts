@@ -1,5 +1,5 @@
-import {Component, Input, Output, EventEmitter} from 'angular2/core';
-import {NgFor, NgClass} from 'angular2/common';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {NgFor, NgClass} from '@angular/common';
 import {Card} from '../../services/card';
 
 @Component({
