@@ -2,7 +2,7 @@
 
 ## Installation
 
-First we have to install a few global package: 
+First we have to install a few global package:
 
 ```bash
 npm i -g typings webpack webpack-dev-server
