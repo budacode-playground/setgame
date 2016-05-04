@@ -1,5 +1,7 @@
 # Set Game
 
+Set is a popular logical board game. Now, implemented in Angular 2
+
 ## Installation
 
 ```bash
@@ -8,10 +10,6 @@ cd setgame
 npm install
 npm start
 ```
-
-## Game description
-
-Set is a popular logical board game. Now, implemented in Angular 2
 
 ### Card properties
 
