@@ -8,7 +8,7 @@ First we have to install a few global package:
 npm i -g typings webpack webpack-dev-server
 ```
 
-Then run `npm install` to install the dependencies. After this you can run the game with `npm run`.
+Then run `npm install` to install the dependencies. After this you can run the game with `npm start`.
 
 ## Game description
 
