@@ -2,13 +2,12 @@
 
 ## Installation
 
-First we have to install a few global package:
-
 ```bash
-npm i -g typings webpack webpack-dev-server
+git clone git@github.com:budacode-playground/setgame.git
+cd setgame
+npm install
+npm start
 ```
-
-Then run `npm install` to install the dependencies. After this you can run the game with `npm start`.
 
 ## Game description
 
