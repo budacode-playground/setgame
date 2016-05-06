@@ -21,9 +21,9 @@
   }
 
   &__formation {
-    width: 30px;
-    height: 30px;
-    margin-bottom: 7px;
+    width: 20px;
+    height: 20px;
+    margin-bottom: 8%;
 
     // Colors & saturations
     &.red {
@@ -42,8 +42,11 @@
     }
 
     // Shapes
-    &.square {  }
-    &.rectangle { width: 50px; }
+    &.triangle {
+      transform: rotate(45deg);
+    }
+
+    &.rectangle { }
     &.circle { border-radius: 50% }
 
   }

@@ -25,7 +25,7 @@ export class BoardComponent {
     this.deck.shuffle();
 
     // Draw the initial cards
-    while (this.visibleCards.count() < 9) {
+    while (this.visibleCards.count() < 12) {
       this.visibleCards.add(this.deck.draw());
     }
   }
@@ -48,22 +48,28 @@ export class BoardComponent {
       // Remove the visible cards and draw from deck
       while (this.chosenCards.count() > 0) {
         this.visibleCards.remove(this.chosenCards.draw());
-        this.visibleCards.add(this.deck.draw());
+        if(this.visibleCards.count() < 12) {
+          this.visibleCards.add(this.deck.draw());
+        }
       }
     } else {
       alert('Sorry, this is not a set');
+      this.chosenCards.setEmpty();
     }
 
   }
 
   clickOnDeck($event: any) {
-    this.visibleCards.add(this.deck.draw());
+    this.visibleCards.add(this.deck.draw())
+    while (this.visibleCards.count() % 3 !== 0) {
+      this.visibleCards.add(this.deck.draw());
+    }
   }
 
   clickOnCard($event: any) {
+    $event.card.active = !$event.card.active;
 
     if ($event.card.active) {
-
       // If we already have 3 chosenCards...
       if (this.chosenCards.count() === 3) {
 
@@ -76,6 +82,7 @@ export class BoardComponent {
         this.chosenCards.add($event.card);
         // If we have 3 chosenCards, let's check
         if (this.chosenCards.count() === 3) {
+          'checkoljuk'
           this.checkForSet();
         }
 

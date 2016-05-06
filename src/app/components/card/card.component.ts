@@ -5,7 +5,7 @@ import {Card} from '../../services/card';
 @Component({
   selector: 'card',
   template: require('./card.jade')(),
-  styleUrls: [require('./card.scss')],
+  styleUrls: [require('./card.component.scss')],
   directives: [NgFor, NgClass],
   providers: [Card],
   pipes: []
@@ -18,7 +18,7 @@ export class CardComponent {
   constructor() {}
 
   onClick() {
-    this.card.active = !this.card.active;
+    // this.card.active = !this.card.active;
     this.clickEvent.emit({ card: this.card });
   }
 

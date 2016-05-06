@@ -4,7 +4,7 @@ import {CardSet} from '../../services/card_set.ts';
 @Component({
   selector: 'deck',
   template: require('./deck.jade')(),
-  styleUrls: [require('./deck.scss')],
+  styleUrls: [require('./deck.component.scss')],
   providers: [CardSet],
   directives: [],
   pipes: []
