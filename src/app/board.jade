@@ -6,6 +6,7 @@
       timer
       deck([deck]='deck', (clickEvent)='clickOnDeck($event)')
       button.m-board__notSetButton((click)='clickOnDeck()') No set on the board
+      button.m-board__helpButton((click)='help()') Help (-10 points)
       .m-board__setCounter Collected sets: {{ sets.length }}
       .m-board__points Your points: {{ player.points }}
     .m-board__cardContainer

@@ -5,6 +5,7 @@ import {CardProps} from '../config/card_props';
 export class Card {
   props: any;
   active: boolean = false;
+  highlighted: boolean = false;
   id: string = Math.random().toString(36).substring(7);
 
   constructor() {
@@ -15,4 +16,7 @@ export class Card {
     this.props = props;
   }
 
+  highlight(bool: boolean) {
+    this.highlighted = bool;
+  }
 }

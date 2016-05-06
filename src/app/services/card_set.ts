@@ -44,15 +44,26 @@ export class CardSet {
     return this.cards.length;
   }
 
-  add(card: Card) {
+  add(card: Card, activate?: boolean) {
+    if(activate) {
+      card.active = true;
+    }
     this.cards.push(card);
   }
 
-  remove(card: Card) {
+  remove(card: Card, deactivate?: boolean) {
+    if(deactivate) {
+      card.active = false;
+    }
     _.remove(this.cards, { id: card.id });
   }
 
-  setEmpty() {
+  setEmpty(deactivate?: boolean) {
+    if(deactivate) {
+      _.forEach(this.cards, (card) =>  {
+        card.active = false;
+      })
+    }
     this.cards = [];
   }
 

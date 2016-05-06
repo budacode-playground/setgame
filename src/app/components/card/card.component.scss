@@ -20,10 +20,6 @@
   align-items: center;
   flex-direction: column;
 
-  &.active {
-    background-color: lightgrey;
-  }
-
   &__formation {
     width: 3vh;
     height: 3vh;
@@ -61,5 +57,31 @@
 
   }
 
+  &.highlighted {
+    transition: all 0.5s;
+    animation: neon2 1.5s ease-in-out infinite alternate;
+  }
 
+  &.active {
+    transition: all 0.5s;
+    animation: neon1 1.5s ease-in-out infinite alternate;
+  }
+
+
+}
+@keyframes neon1 {
+  from {
+    box-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 7px #fff, 0 0 10px #FF1177, 0 0 17px #FF1177, 0 0 20px #FF1177, 0 0 25px #FF1177, 0 0 37px #FF1177;
+  }
+  to {
+    box-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 3px #fff, 0 0 5px #FF1177, 0 0 8px #FF1177, 0 0 10px #FF1177, 0 0 12px #FF1177, 0 0 18px #FF1177;
+  }
+}
+@keyframes neon2 {
+  from {
+    box-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 7px #fff, 0 0 10px #228DFF, 0 0 17px #228DFF, 0 0 20px #228DFF, 0 0 25px #228DFF, 0 0 37px #228DFF;
+  }
+  to {
+    box-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 3px #fff, 0 0 5px #228DFF, 0 0 8px #228DFF, 0 0 10px #228DFF, 0 0 12px #228DFF, 0 0 18px #228DFF;
+  }
 }

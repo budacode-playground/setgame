@@ -1,2 +1,2 @@
-.m-card.c-card([ngClass]='{active: card.active}', (click)='onClick()')
+.m-card.c-card([ngClass]='{active: card.active, highlighted: card.highlighted}', (click)='onClick()')
   .m-card__formation(*ngFor='let item of getNumber()', class='{{ getClasses() }}')
