@@ -3,7 +3,10 @@
 
   .m-board__main
     .m-board__deckContainer
+      timer
       deck([deck]='deck', (clickEvent)='clickOnDeck($event)')
+      button.m-board__notSetButton((click)='clickOnDeck()') No set on the board
       .m-board__setCounter Collected sets: {{ sets.length }}
+      .m-board__points Your points: {{ player.points }}
     .m-board__cardContainer
-      card(*ngFor='#card of visibleCards.cards', [card]='card', (clickEvent)='clickOnCard($event)')
+      card(*ngFor='let card of visibleCards.cards', [card]='card', (clickEvent)='clickOnCard($event)')

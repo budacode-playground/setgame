@@ -5,12 +5,12 @@ import {CardComponent} from './components/card/card.component.ts';
 import {CardProps} from './config/card_props.ts';
 import {Card} from './services/card.ts';
 import {CardSet} from './services/card_set.ts';
+import {Player} from './services/player.ts';
 
 @Component({
   selector: 'board',
   template: require('./board.jade')(),
   styleUrls: [require('./board.scss')],
-  directives: [NgFor, DeckComponent, CardComponent],
   providers: [Card],
   pipes: []
 })
@@ -19,6 +19,8 @@ export class BoardComponent {
   visibleCards: CardSet = new CardSet();
   chosenCards: CardSet = new CardSet();
   sets: CardSet[] = [];
+  isAnySet: boolean = false;
+  player: Player = new Player();
   constructor() {
     // Shuffle the deck
     this.deck.generateDeck();
@@ -28,6 +30,7 @@ export class BoardComponent {
     while (this.visibleCards.count() < 12) {
       this.visibleCards.add(this.deck.draw());
     }
+    this.lookForSet()
   }
 
   checkForSet() {
@@ -44,6 +47,7 @@ export class BoardComponent {
 
     if (isSet) {
       this.sets.push(this.chosenCards);
+      this.player.reward(50);
 
       // Remove the visible cards and draw from deck
       while (this.chosenCards.count() > 0) {
@@ -60,9 +64,15 @@ export class BoardComponent {
   }
 
   clickOnDeck($event: any) {
-    this.visibleCards.add(this.deck.draw())
-    while (this.visibleCards.count() % 3 !== 0) {
-      this.visibleCards.add(this.deck.draw());
+    if(this.isAnySet) {
+      alert('There is a set on the board! Look harder')
+      this.player.penality(10);
+    } else {
+      this.player.reward(10);
+      this.visibleCards.add(this.deck.draw())
+      while (this.visibleCards.count() % 3 !== 0) {
+        this.visibleCards.add(this.deck.draw());
+      }
     }
   }
 
@@ -92,7 +102,33 @@ export class BoardComponent {
       this.chosenCards.remove($event.card);
     }
 
+  }
 
+  lookForSet() {
+    this.isAnySet = false;
+    let vc = this.visibleCards.cards;
+    loop1:
+    for (let i = 0; i < vc.length; i++) {
+      for (let j = i+1; j < vc.length; j++) {
+        for (let k = j+1; k < vc.length; k++) {
+          let choosenCards = [vc[i], vc[j], vc[k]];
+          let isSet = CardProps.propertyNames.reduce((prevVal, curVal, curIndex) => {
+            let propertyValues = _.flatMap(choosenCards, `props.${curVal}`);
+            let uniqueValues = _.uniq(propertyValues);
+            return prevVal && uniqueValues.length !== 2;
+          }, true);
+          if (isSet) {
+            this.isAnySet = true;
+            break loop1;
+          }
+        }
+      }
+    }
+
+
+
+
+    console.log()
   }
 
 }
