@@ -4,8 +4,43 @@
     display: flex;
   }
 
+  &__menu {
+    width: 100vw;
+    display: flex;
+  }
+
+  &__menuItem {
+    padding: 10px 20px;
+  }
+
+  &__welcome, &__result {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #7ED0D6;
+    z-index: 2;
+    padding: 3vmin;
+  }
+  &__example {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2vh;
+  }
+  &__exampleCards{
+    display: flex;
+    .c-card {
+      margin-right: 20px;
+    }
+  }
+
   &__deckContainer {
-    width: 20vh;
+    width: 25vh;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
   }
 
   &__cardContainer {
@@ -22,6 +57,22 @@
 
   &__setCounter {
     margin-top: 10px;
+  }
+
+  &__deck {
+    margin-bottom: 20px;
+    .c-card {
+      cursor: default;
+    }
+  }
+
+  &__helpButton {
+    margin-bottom: 20px;
+  }
+
+  &__timer {
+    margin-top: 20px;
+    font-weight: bold;
   }
 
 }

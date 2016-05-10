@@ -21,7 +21,14 @@ export class TimerComponent {
     this.timer.subscribe(t => this.time = t);
   }
 
+  stop() {
+    this.timer.unsubscribe();
+  }
+
+  reset() {
+    this.time = 0;
+  }
   ngOnInit() {
-    this.start();
+    // this.start();
   }
 }

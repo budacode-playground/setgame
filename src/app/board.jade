@@ -1,13 +1,111 @@
 .m-board
-  h1 Welcome to the board
+
+  .m-board__menu
+    .m-board__menuItem Rules
+    .m-board__menuItem How it's made
+  .m-board__welcome([hidden]='!startScreen')
+    h2 Welcome on board
+      button((click)='finishRules()') Start
+    p The object of the game is to identify a 'Set' of three cards from 12 cards laid out on the table. Each card has a variation of the following four features:
+    ol
+      li COLOR: Each card is red, green, or blue.
+      li SYMBOL: Each card contains ellipses, rhombuses, or squares.
+      li NUMBER: Each card has one, two, or three symbols.
+      li SHADING: Each card is solid, open, or striped.
+    p A 'Set' consists of three cards in which each feature is EITHER the same on each card OR is different on each card. That is to say, any feature in the 'Set' of three cards is either common to all three cards or is different on each card.
+
+    h3 Examples of sets:
+    ol
+      li.m-board__example
+        .m-board__exampleCards
+          .m-card.c-card
+            .m-card__formation.full.green.rectangle
+            .m-card__formation.full.green.rectangle
+          .m-card.c-card
+            .m-card__formation.full.red.rectangle
+            .m-card__formation.full.red.rectangle
+          .m-card.c-card
+            .m-card__formation.full.blue.rectangle
+            .m-card__formation.full.blue.rectangle
+        ul.m-board__exampleDesc
+          li
+            strong color:
+            |  different on each card
+          li
+            strong symbol:
+            |  the same on each card (square)
+          li
+            strong number:
+            |  the same on each (two)
+          li
+            strong shading:
+            |  the same on each card (solid)
+      li.m-board__example
+        .m-board__exampleCards
+          .m-card.c-card
+            .m-card__formation.striped.green.rhombus
+            .m-card__formation.striped.green.rhombus
+          .m-card.c-card
+            .m-card__formation.full.red.circle
+          .m-card.c-card
+            .m-card__formation.empty.blue.rectangle
+            .m-card__formation.empty.blue.rectangle
+            .m-card__formation.empty.blue.rectangle
+        ul.m-board__exampleDesc
+          li
+            strong color:
+            |  different on each card
+          li
+            strong symbol:
+            |  different on each card
+          li
+            strong number:
+            |  different on each card
+          li
+            strong shading:
+            |  different on each card
+      li.m-board__example
+        .m-board__exampleCards
+          .m-card.c-card
+            .m-card__formation.full.green.rhombus
+            .m-card__formation.full.green.rhombus
+          .m-card.c-card
+            .m-card__formation.striped.green.rhombus
+            .m-card__formation.striped.green.rhombus
+            .m-card__formation.striped.green.rhombus
+          .m-card.c-card
+            .m-card__formation.empty.green.rhombus
+        ul.m-board__exampleDesc
+          li
+            strong color:
+            |  the same on each card (green)
+          li
+            strong symbol:
+            |  the same on each card (rhombus)
+          li
+            strong number:
+            |  different on each card
+          li
+            strong shading:
+            |  different on each card
+    button((click)='startScreen=false') Start
 
   .m-board__main
     .m-board__deckContainer
-      timer
-      deck([deck]='deck', (clickEvent)='clickOnDeck($event)')
-      button.m-board__notSetButton((click)='clickOnDeck()') No set on the board
-      button.m-board__helpButton((click)='help()') Help (-10 points)
+      deck.m-board__deck([deck]='deck', (clickEvent)='clickOnDeck($event)')
+      button.m-board__noSetButton((click)='clickOnDeck()') No set on the board
+      button.m-board__helpButton((click)='help()') Hint (-20 points)
+
+      //Just for testing
+      button((click)='resultScreen=true') End
+      button((click)='startTimer()') Timer start
+
       .m-board__setCounter Collected sets: {{ sets.length }}
       .m-board__points Your points: {{ player.points }}
+      timer.m-board__timer(#timer)
     .m-board__cardContainer
       card(*ngFor='let card of visibleCards.cards', [card]='card', (clickEvent)='clickOnCard($event)')
+
+  .m-board__result([hidden]='!resultScreen')
+     button((click)='finishRules()') Start again
+     h2 Congratulation, your result is: {{ player.points }}

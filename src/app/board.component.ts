@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {NgFor} from '@angular/common';
 import {DeckComponent} from './components/deck/deck.component.ts';
 import {CardComponent} from './components/card/card.component.ts';
@@ -24,7 +24,32 @@ export class BoardComponent {
   visibleSet: CardSet = new CardSet();
   isAnySet: boolean = false;
   player: Player = new Player();
+  startScreen: boolean = true;
+  resultScreen: boolean;
+  @ViewChild(TimerComponent)
+  timer:TimerComponent;
+
   constructor() {
+    this.start();
+  }
+
+  finishRules() {
+    this.timer.start();
+    this.startScreen = false;
+  }
+
+  start(again?:boolean) {
+    if(again) {
+      this.deck = new CardSet();
+      this.visibleCards = new CardSet();
+      this.chosenCards = new CardSet();
+      this.sets = [];
+      this.visibleSet = new CardSet();
+      this.isAnySet = false;
+      this.player = new Player();
+      this.resultScreen = false;
+    }
+
     // Shuffle the deck
     this.deck.generateDeck();
     this.deck.shuffle();
@@ -33,7 +58,7 @@ export class BoardComponent {
     while (this.visibleCards.count() < 12) {
       this.visibleCards.add(this.deck.draw());
     }
-    this.lookForSet()
+    this.lookForSet();
   }
 
   checkForSet() {
@@ -50,7 +75,7 @@ export class BoardComponent {
 
     if (isSet) {
       this.sets.push(this.chosenCards);
-      this.player.reward(50);
+      this.player.reward(30);
 
       // Remove the visible cards and draw from deck
       while (this.chosenCards.count() > 0) {
@@ -70,7 +95,7 @@ export class BoardComponent {
 
   }
 
-  clickOnDeck($event: any) {
+  clickOnDeck() {
     if(this.isAnySet) {
       alert('There is a set on the board! Look harder');
       this.player.penality(10);
@@ -128,13 +153,17 @@ export class BoardComponent {
   }
 
   help() {
-    this.chosenCards.setEmpty(true);
     this.visibleSet.shuffle();
     let vs = this.visibleSet.cards;
-    for (let i = 0; i < vs.length; i++) {
-      if(!vs[i].active && !vs[i].highlighted) {
-        vs[i].highlight(true);
-        break;
+    console.log(vs)
+    if(vs && !_.find(vs, {highlighted: true})) {
+      vs[0].highlight(true);
+      this.player.penality(20);
+    } else {
+      if(this.deck.count() === 0) {
+        this.end()
+      } else {
+        this.clickOnDeck()
       }
     }
   }
